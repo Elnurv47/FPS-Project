@@ -11,12 +11,12 @@ public class MouseController : MonoBehaviour
     private const float TOP_CLAMP = -90;
     private const float BOTTOM_CLAMP = 90;
 
-    void Start()
+    private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()
+    private void Update()
     {
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
@@ -26,6 +26,11 @@ public class MouseController : MonoBehaviour
 
         yRotation += mouseX;
 
-        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        playerBody.Rotate(Vector3.up * mouseX);
+    }
+
+    private void LateUpdate()
+    {
+        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
     }
 }

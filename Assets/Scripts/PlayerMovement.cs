@@ -12,12 +12,12 @@ public class CharacterMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
 
-    void Start()
+    private void Start()
     {
         controller = GetComponent<CharacterController>();
     }
 
-    void Update()
+    private void Update()
     {
         if (controller.isGrounded && velocity.y < 0)
         {
