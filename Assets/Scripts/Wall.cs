@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour, IDamageable
 {
-    public void TakeDamage(float damage)
+    [SerializeField] private GameObject bulletHolePrefab;
+
+    public void TakeDamage(float damage, RaycastHit hitInfo)
     {
-        Debug.Log("Wall taking damage");
+        GameObject spawnedBulletHole = Instantiate(bulletHolePrefab, hitInfo.point, Quaternion.identity);
     }
 }
