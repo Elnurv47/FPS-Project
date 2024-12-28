@@ -1,16 +1,25 @@
+﻿using System;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
+    private const string HORİZONTAL_AXİS_INPUT = "Horizontal";
+    private const string VERTİCAL_AXİS_INPUT = "Vertical";
+    private const string JUMP_INPUT = "Jump";
+
+    private bool isGrounded;
+
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float gravity = -9.8f;
+    [SerializeField] private float gravity = -15f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;
 
     private CharacterController controller;
     private Vector3 velocity;
+
+    public Action<bool> OnMovementStateChanged;
 
     private void Start()
     {
@@ -19,19 +28,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-        if (controller.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
+        HandleCharacterMovement();
+        HandleJumpingAndGravity();
+    }
 
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
+    private void HandleJumpingAndGravity()
+    {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
-
-        controller.Move(move * speed * Time.deltaTime);
-
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        if (Input.GetButtonDown(JUMP_INPUT) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
         }
@@ -39,5 +44,24 @@ public class CharacterMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void HandleCharacterMovement()
+    {
+        Vector3 move = GetMoveVectorFromInput();
+
+        bool isWalking = move.magnitude > 0.5f;
+        OnMovementStateChanged?.Invoke(isWalking);
+
+        controller.Move(move * speed * Time.deltaTime);
+    }
+
+    private Vector3 GetMoveVectorFromInput()
+    {
+        float moveX = Input.GetAxis(HORİZONTAL_AXİS_INPUT);
+        float moveZ = Input.GetAxis(VERTİCAL_AXİS_INPUT);
+
+        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+        return move;
     }
 }
