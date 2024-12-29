@@ -1,5 +1,4 @@
 using System;
-using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -12,9 +11,15 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Camera fpsCamera;
     [SerializeField] private Transform muzzleEffectSpawnPoint;
     [SerializeField] private GameObject[] muzzleEffects;
+    [SerializeField] private WeaponSelectionSystem weaponSelectionSystem;
 
     public Action<bool> OnPlayerIsShooting;
     public Action<bool> OnPlayerIsReloading;
+
+    private void Start()
+    {
+        weaponSelectionSystem.OnNewWeaponEquipped += SelectionSystem_OnNewWeaponEquipped;
+    }
 
     private void Update()
     {
@@ -69,5 +74,10 @@ public class PlayerShooting : MonoBehaviour
     private void StopShooting()
     {
         OnPlayerIsShooting?.Invoke(false);
+    }
+
+    private void SelectionSystem_OnNewWeaponEquipped(Weapon newlySelectedWeapon)
+    {
+        currentWeapon = newlySelectedWeapon;
     }
 }
