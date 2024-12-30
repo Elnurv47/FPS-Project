@@ -1,45 +1,63 @@
+using System;
 using UnityEngine;
 using System.Collections;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private const int RELOADING_ANIMATION_TIME = 3;
+    private const float RELOADING_ANIMATION_TIME = 3f;
+    private const float TAKING_DOWN_WEAPON_ANIMATION_TIME = 1f;
 
-    private const string SHOOTING_ANIMATION_NAME = "isAiming";
+    private const string SHOOTING_ANIMATION_NAME = "isShooting";
     private const string WALKING_ANIMATION_NAME = "isWalking";
-    private const string RELOADING_ANIMATION_NAME = "isReloading";
+    private const string RELOADING_ANIMATION_NAME = "reloadTrigger";
+    private const string TAKING_DOWN_WEAPON_ANIMATION_NAME = "takingDownWeapon";
 
+    private Animator currentWeaponAnimator;
+
+    [SerializeField] private WeaponSelectionSystem weaponSelectionSystem;
     [SerializeField] private PlayerShooting playerShooting;
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private Animator playerAnimator;
 
     private void Start()
     {
+        weaponSelectionSystem.OnNewWeaponEquipped += WeaponSelectionSystem_OnNewWeaponSelected;
         playerShooting.OnPlayerIsShooting += PlayerShooting_OnPlayerIsShooting;
         playerShooting.OnPlayerIsReloading += PlayerShooting_OnPlayerIsReloading;
         playerMovement.OnMovementStateChanged += PlayerMovement_OnMovementStateChanged;
+        weaponSelectionSystem.OnTakingDownWeapon += WeaponSelectionSystem_OnTakingDownWeapon;
+
+        currentWeaponAnimator = weaponSelectionSystem.CurrentWeapon.Animator;
+    }
+
+    private void WeaponSelectionSystem_OnNewWeaponSelected(Weapon weapon)
+    {
+        currentWeaponAnimator = weapon.Animator;
     }
 
     private void PlayerShooting_OnPlayerIsShooting(bool isShooting)
     {
-        playerAnimator.SetBool(SHOOTING_ANIMATION_NAME, isShooting);
+        currentWeaponAnimator.SetBool(SHOOTING_ANIMATION_NAME, isShooting);
     }
 
-    private void PlayerShooting_OnPlayerIsReloading(bool isReloading)
+    private void PlayerShooting_OnPlayerIsReloading(Action onFinished)
     {
-        playerAnimator.SetBool(RELOADING_ANIMATION_NAME, isReloading);
-        StartCoroutine(StopReloadingAnimationCoroutine());
+        currentWeaponAnimator.SetTrigger(RELOADING_ANIMATION_NAME);
+        StartCoroutine(FinishReloadingAnimationCoroutine(onFinished));
     }
 
-    private IEnumerator StopReloadingAnimationCoroutine()
+    private IEnumerator FinishReloadingAnimationCoroutine(Action onFinished)
     {
         yield return new WaitForSeconds(RELOADING_ANIMATION_TIME);
-
-        playerAnimator.SetBool(RELOADING_ANIMATION_NAME, false);
+        onFinished?.Invoke();
     }
 
     private void PlayerMovement_OnMovementStateChanged(bool isWalking)
     {
-        playerAnimator.SetBool(WALKING_ANIMATION_NAME, isWalking);
+        currentWeaponAnimator.SetBool(WALKING_ANIMATION_NAME, isWalking);
+    }
+
+    private void WeaponSelectionSystem_OnTakingDownWeapon()
+    {
+        currentWeaponAnimator.SetBool(TAKING_DOWN_WEAPON_ANIMATION_NAME, true);
     }
 }

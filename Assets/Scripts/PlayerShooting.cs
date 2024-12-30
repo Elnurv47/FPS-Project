@@ -5,25 +5,26 @@ using Random = UnityEngine.Random;
 public class PlayerShooting : MonoBehaviour
 {
     private const string SHOOTING_INPUT_NAME = "Fire1";
+
     private float nextTimeToFire = 0f;
+    private bool isReloading;
 
     [SerializeField] private Weapon currentWeapon;
     [SerializeField] private Camera fpsCamera;
-    [SerializeField] private Transform muzzleEffectSpawnPoint;
     [SerializeField] private GameObject[] muzzleEffects;
-    [SerializeField] private WeaponSelectionSystem weaponSelectionSystem;
+    [SerializeField] private WeaponSelectionSystem selectionSystem;
 
     public Action<bool> OnPlayerIsShooting;
-    public Action<bool> OnPlayerIsReloading;
+    public Action<Action> OnPlayerIsReloading;
 
     private void Start()
     {
-        weaponSelectionSystem.OnNewWeaponEquipped += SelectionSystem_OnNewWeaponEquipped;
+        selectionSystem.OnNewWeaponEquipped += SelectionSystem_OnNewWeaponEquipped;
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown(SHOOTING_INPUT_NAME) && Time.time >= nextTimeToFire)
+        if (CanShoot())
         {
             nextTimeToFire = Time.time + currentWeapon.FireRate;
             Shoot();
@@ -32,6 +33,9 @@ public class PlayerShooting : MonoBehaviour
         if (Input.GetButtonUp(SHOOTING_INPUT_NAME)) StopShooting();
         if (Input.GetKeyDown(KeyCode.R)) Reload();
     }
+
+    private bool CanShoot() => 
+        Input.GetButtonDown(SHOOTING_INPUT_NAME) && Time.time >= nextTimeToFire && !isReloading;
 
     private void Shoot()
     {
@@ -61,14 +65,21 @@ public class PlayerShooting : MonoBehaviour
         int randomIndex = Random.Range(0, muzzleEffects.Length);
         GameObject randomMuzzleEffect = muzzleEffects[randomIndex];
         Instantiate(
-            randomMuzzleEffect, muzzleEffectSpawnPoint.position, muzzleEffectSpawnPoint.rotation, muzzleEffectSpawnPoint);
+            randomMuzzleEffect, 
+            currentWeapon.MuzzleEffectSpawnPoint.position, 
+            currentWeapon.MuzzleEffectSpawnPoint.rotation, 
+            currentWeapon.MuzzleEffectSpawnPoint);
     }
 
     private void Reload()
     {
         if (currentWeapon.CurrentAmmoInMagazine == currentWeapon.WeaponMagazineCapacity) return;
+        isReloading = true;
         currentWeapon.Reload();
-        OnPlayerIsReloading?.Invoke(true);
+        OnPlayerIsReloading?.Invoke(() =>
+        {
+            isReloading = false;
+        });
     }
 
     private void StopShooting()

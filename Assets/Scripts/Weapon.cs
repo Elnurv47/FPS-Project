@@ -17,13 +17,21 @@ public class Weapon : MonoBehaviour
     [Header("Sound Settings")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip shootingSound;
+
+    [Header("Shooting Effects")]
+    [SerializeField] private Transform muzzleEffectSpawnPoint;
+
+    [Header("Animator")]
+    [SerializeField] private Animator animator;
     
     public int CurrentAmmoInMagazine { get => currentAmmoInMagazine; }
     public int WeaponMagazineCapacity { get => weaponMagazineCapacity; }
     public int CurrentAmmo { get => currentAmmo; }
     public float ShootingRange { get => shootingRange; }
-    public float FireRate { get => fireRate; }
     public float Damage { get => damage; }
+    public float FireRate { get => fireRate; }
+    public Transform MuzzleEffectSpawnPoint { get => muzzleEffectSpawnPoint; }
+    public Animator Animator { get => animator; }
 
     private void Awake()
     {
