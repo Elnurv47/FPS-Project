@@ -45,7 +45,7 @@ public class PlayerShooting : MonoBehaviour
 
         if (currentWeapon.CurrentAmmoInMagazine == 0) Reload();
 
-        Vector3 rayOrigin = currentWeapon.ShootingPoint;
+        Vector3 rayOrigin = fpsCamera.transform.position;
         Vector3 rayDirection = fpsCamera.transform.forward;
 
         if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo, currentWeapon.ShootingRange))

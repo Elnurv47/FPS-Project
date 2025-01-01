@@ -1,10 +1,15 @@
 using System;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Zombie : MonoBehaviour, IDamageable
 {
+    private const float DYING_ANIMATION_PERIOD = 1f;
+
+    private float attackCooldown = 1.0f;
+    private float lastAttackTime = -Mathf.Infinity;
+
     private Player player;
     private Transform playerTransform;
 
@@ -34,35 +39,35 @@ public class Zombie : MonoBehaviour, IDamageable
     private void Update()
     {
         if (PlayerIsInRange())
-        {
-            MoveToPlayer();
+            HandleMovementAndAttack();
+        else
+            StopMoving();
+    }
 
-            if (CanAttackPlayer())
-            {
-                StopMoving();
-                Attack();
-            }
-            else
-            {
-                StopAttacking();
-                MoveToPlayer();
-            }
+    private void HandleMovementAndAttack()
+    {
+        MoveToPlayer();
+
+        if (CanAttackPlayer() && EnoughTimePassedForAttacking())
+        {
+            StopMoving();
+            Attack();
+            lastAttackTime = Time.time;
         }
         else
         {
-            StopMoving();
+            StopAttacking();
         }
     }
 
-    private bool PlayerIsInRange()
-    {
-        return Vector3.Distance(agent.transform.position, playerTransform.position) < range;
-    }
+    private bool EnoughTimePassedForAttacking() =>
+        Time.time >= lastAttackTime + attackCooldown;
 
-    private bool CanAttackPlayer()
-    {
-        return Vector3.Distance(agent.transform.position, playerTransform.position) < attackRange;
-    }
+    private bool PlayerIsInRange() =>
+        Vector3.Distance(agent.transform.position, playerTransform.position) < range;
+
+    private bool CanAttackPlayer() =>
+        Vector3.Distance(agent.transform.position, playerTransform.position) < attackRange;
 
     private void MoveToPlayer()
     {
@@ -94,14 +99,33 @@ public class Zombie : MonoBehaviour, IDamageable
         healthSystem.DecreaseHealth(damage);
     }
 
-    private void HealthSystem_OnDied()
-    {
-        Die();
-    }
+    private void HealthSystem_OnDied() => Die();
 
     private void Die()
     {
         OnDied?.Invoke();
-        agent.enabled = false;
+        StartCoroutine(WiatForDeathAnimationCoroutine());
+    }
+
+    private IEnumerator WiatForDeathAnimationCoroutine()
+    {
+        yield return new WaitForSeconds(DYING_ANIMATION_PERIOD);
+        DeactivateComponents();
+    }
+
+    private void DeactivateComponents()
+    {
+        Component[] components = GetComponents<Component>();
+
+        foreach (Component component in components)
+        {
+            if (component is Transform || component is Renderer)
+                continue;
+
+            if (component is MonoBehaviour)
+                ((MonoBehaviour)component).enabled = false;
+            else
+                Destroy(component);
+        }
     }
 }
