@@ -300,8 +300,10 @@ GameObject:
   - component: {fileID: 2631733237317334382}
   - component: {fileID: 3028957524095136418}
   - component: {fileID: 7294567593354576735}
+  - component: {fileID: 8681914767245726389}
   - component: {fileID: 951523949502424091}
   - component: {fileID: 4432557634876848885}
+  - component: {fileID: 5811254665061515798}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Untagged
@@ -355,7 +357,13 @@ Animator:
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_WarningMessage: 
+  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
+    are already bound by a Humanoid avatar. These transforms can only be changed
+    by Humanoid clips.\n\tTransform 'Base HumanLArmForearm'\n\tTransform 'Base HumanLArmDigit52'\n\tTransform
+    'Base HumanLArmDigit12'\n\tTransform 'Base HumanSpine1'\n\tTransform 'Base HumanHeadJaw'\n\tTransform
+    'Base HumanLArmDigit23'\n\tTransform 'Base HumanLArmUpperarm'\n\tTransform 'Base
+    HumanLArmDigit43'\n\tTransform 'Base HumanLLegCalf'\n\tTransform 'Base HumanPelvis'\n\tand
+    more ...\n\tFrom animation clip 'Zombie_Dying'"
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
@@ -378,7 +386,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -409,6 +417,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &8681914767245726389
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678317762677094760}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.7816204
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8933633, z: 0}
 --- !u!114 &951523949502424091
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,10 +452,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738453b967b263f4dabd0770117e1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 50
+  range: 20
   attackRange: 2
   speed: 0.5
+  damage: 50
   agent: {fileID: 3028957524095136418}
+  healthSystem: {fileID: 5811254665061515798}
 --- !u!114 &4432557634876848885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +472,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zombie: {fileID: 951523949502424091}
   animator: {fileID: 2631733237317334382}
+--- !u!114 &5811254665061515798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678317762677094760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c2d336f34a0d784db58e3fa14d78de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1684917754408444932
 GameObject:
   m_ObjectHideFlags: 0

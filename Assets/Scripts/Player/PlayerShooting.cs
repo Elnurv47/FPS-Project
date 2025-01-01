@@ -45,13 +45,14 @@ public class PlayerShooting : MonoBehaviour
 
         if (currentWeapon.CurrentAmmoInMagazine == 0) Reload();
 
-        Vector3 cameraPosition = fpsCamera.transform.position;
-        Vector3 cameraForward = fpsCamera.transform.forward;
+        Vector3 rayOrigin = currentWeapon.ShootingPoint;
+        Vector3 rayDirection = fpsCamera.transform.forward;
 
-        if (Physics.Raycast(cameraPosition, cameraForward, out RaycastHit hitInfo, currentWeapon.ShootingRange))
+        if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo, currentWeapon.ShootingRange))
         {
             if (hitInfo.transform.TryGetComponent(out IDamageable damageable))
             {
+                Debug.Log(damageable);
                 damageable.TakeDamage(currentWeapon.Damage, hitInfo);
             }
         }

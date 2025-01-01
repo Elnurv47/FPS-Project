@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,9 +13,11 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float speed = 10f;
     [SerializeField] private float damage = 5f;
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private HealthSystem healthSystem;
 
     public Action<bool> OnMovementStateChanged;
     public Action<bool> OnAttackingStateChanged;
+    public Action OnDied;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class Zombie : MonoBehaviour, IDamageable
     {
         player = GameObject.Find("Player").GetComponent<Player>();
         playerTransform = player.transform;
+        healthSystem.OnDied += HealthSystem_OnDied;
     }
 
     private void Update()
@@ -85,6 +89,16 @@ public class Zombie : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, RaycastHit hitInfo)
     {
-        Debug.Log("Zombie takes damage: " + damage);
+        healthSystem.DecreaseHealth(damage);
+    }
+
+    private void HealthSystem_OnDied()
+    {
+        Die();
+    }
+
+    private void Die()
+    {
+        //Destroy(gameObject);
     }
 }

@@ -13,6 +13,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float shootingRange = 100f;
     [SerializeField] private float damage = 10f;
     [SerializeField, Range(0f, 1f)] private float fireRate = 0.5f;
+    [SerializeField] private Transform shootingPoint;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioSource audioSource;
@@ -30,6 +31,7 @@ public class Weapon : MonoBehaviour
     public float ShootingRange { get => shootingRange; }
     public float Damage { get => damage; }
     public float FireRate { get => fireRate; }
+    public Vector3 ShootingPoint { get => shootingPoint.position; }
     public Transform MuzzleEffectSpawnPoint { get => muzzleEffectSpawnPoint; }
     public Animator Animator { get => animator; }
 
