@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Wall : MonoBehaviour, IDamageable
+public class DamageableObject : MonoBehaviour, IDamageable
 {
     [SerializeField] private GameObject bulletHolePrefab;
 

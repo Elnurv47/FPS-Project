@@ -66,12 +66,14 @@ public class Zombie : MonoBehaviour, IDamageable
 
     private void MoveToPlayer()
     {
+        if (!agent.enabled) return;
         agent.SetDestination(playerTransform.position);
         OnMovementStateChanged?.Invoke(true);
     }
 
     private void StopMoving()
     {
+        if (!agent.enabled) return;
         agent.ResetPath();
         OnMovementStateChanged?.Invoke(false);
     }
@@ -100,5 +102,6 @@ public class Zombie : MonoBehaviour, IDamageable
     private void Die()
     {
         OnDied?.Invoke();
+        agent.enabled = false;
     }
 }

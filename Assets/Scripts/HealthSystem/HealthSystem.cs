@@ -8,6 +8,7 @@ public class HealthSystem : MonoBehaviour
     [SerializeField] private float maxHealth;
 
     public Action OnDied;
+    public Action<float, float> OnHealthChanged;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class HealthSystem : MonoBehaviour
     {
         health += amount;
         health = Mathf.Clamp(health, 0, maxHealth);
+        OnHealthChanged?.Invoke(health, maxHealth);
     }
 
     public void DecreaseHealth(float amount)
@@ -25,5 +27,6 @@ public class HealthSystem : MonoBehaviour
         health -= amount;
         if (health <= 0) OnDied?.Invoke();
         health = Mathf.Clamp(health, 0, maxHealth);
+        OnHealthChanged?.Invoke(health, maxHealth);
     }
 }
