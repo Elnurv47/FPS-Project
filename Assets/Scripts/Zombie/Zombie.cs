@@ -99,6 +99,6 @@ public class Zombie : MonoBehaviour, IDamageable
 
     private void Die()
     {
-        //Destroy(gameObject);
+        OnDied?.Invoke();
     }
 }

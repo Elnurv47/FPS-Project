@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    [SerializeField] private float mouseSensitivity = 100f;
-    [SerializeField] private Transform playerBody;
+    private const float TOP_CLAMP = -90;
+    private const float BOTTOM_CLAMP = 90;
+    private const string MOUSE_X_INPUT_NAME = "Mouse X";
+    private const string MOUSE_Y_INPUT_NAME = "Mouse Y";
 
     private float xRotation = 0f;
     private float yRotation = 0f;
 
-    private const float TOP_CLAMP = -90;
-    private const float BOTTOM_CLAMP = 90;
+    [SerializeField] private float mouseSensitivity = 100f;
+    [SerializeField] private Transform playerBody;
 
     private void Start()
     {
@@ -18,8 +20,8 @@ public class MouseController : MonoBehaviour
 
     private void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis(MOUSE_X_INPUT_NAME) * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis(MOUSE_Y_INPUT_NAME) * mouseSensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, TOP_CLAMP, BOTTOM_CLAMP);

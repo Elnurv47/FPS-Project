@@ -52,7 +52,6 @@ public class PlayerShooting : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent(out IDamageable damageable))
             {
-                Debug.Log(damageable);
                 damageable.TakeDamage(currentWeapon.Damage, hitInfo);
             }
         }

@@ -14,9 +14,13 @@ public class Crosshair : MonoBehaviour
         {
             if (hitInfo.transform.TryGetComponent(out IDamageable damageable))
             {
-                if (damageable is Wall wall)
+                if (damageable is Zombie)
                 {
                     crosshairImage.color = Color.red;
+                }
+                else
+                {
+                    crosshairImage.color = Color.black;
                 }
             }
             else
