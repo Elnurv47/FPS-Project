@@ -13,6 +13,8 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Camera fpsCamera;
     [SerializeField] private GameObject[] muzzleEffects;
     [SerializeField] private WeaponSelectionSystem selectionSystem;
+    [SerializeField] private LayerMask nonShootableLayerMask;
+    [SerializeField] private PauseMenu pauseMenu;
 
     public Action<bool> OnPlayerIsShooting;
     public Action<Action> OnPlayerIsReloading;
@@ -20,6 +22,7 @@ public class PlayerShooting : MonoBehaviour
     private void Start()
     {
         selectionSystem.OnNewWeaponEquipped += SelectionSystem_OnNewWeaponEquipped;
+        pauseMenu.OnPauseStateChanged += PauseMenu_OnPauseStateChanged;
     }
 
     private void Update()
@@ -48,7 +51,12 @@ public class PlayerShooting : MonoBehaviour
         Vector3 rayOrigin = fpsCamera.transform.position;
         Vector3 rayDirection = fpsCamera.transform.forward;
 
-        if (Physics.Raycast(rayOrigin, rayDirection, out RaycastHit hitInfo, currentWeapon.ShootingRange))
+        if (Physics.Raycast(
+            rayOrigin, 
+            rayDirection, 
+            out RaycastHit hitInfo, 
+            currentWeapon.ShootingRange, 
+            ~nonShootableLayerMask))
         {
             if (hitInfo.transform.TryGetComponent(out IDamageable damageable))
             {
@@ -90,5 +98,10 @@ public class PlayerShooting : MonoBehaviour
     private void SelectionSystem_OnNewWeaponEquipped(Weapon newlySelectedWeapon)
     {
         currentWeapon = newlySelectedWeapon;
+    }
+
+    private void PauseMenu_OnPauseStateChanged(bool isPaused)
+    {
+        enabled = !isPaused;
     }
 }

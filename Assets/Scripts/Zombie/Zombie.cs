@@ -19,6 +19,7 @@ public class Zombie : MonoBehaviour, IDamageable
     [SerializeField] private float damage = 5f;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private HealthSystem healthSystem;
+    [SerializeField] private ParticleSystem hitEffect;
 
     public Action<bool> OnMovementStateChanged;
     public Action<bool> OnAttackingStateChanged;
@@ -96,6 +97,8 @@ public class Zombie : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, RaycastHit hitInfo)
     {
+        hitEffect.transform.position = hitInfo.point;
+        hitEffect.Play();
         healthSystem.DecreaseHealth(damage);
     }
 

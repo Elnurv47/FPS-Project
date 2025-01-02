@@ -6,10 +6,12 @@ public class WeaponSelectionSystem : MonoBehaviour
     private const string MOUSE_SCROLL_WHEEL_INPUT = "Mouse ScrollWheel";
 
     private int selectedWeaponSlotIndex = 0;
+    private bool isGamePaused;
     private Weapon currentWeapon;
 
     [SerializeField] private WeaponSlotUI[] weaponSelectionUIs;
     [SerializeField] private Transform playerWeaponHolder;
+    [SerializeField] private PauseMenu pauseMenu;
 
     public Action<Weapon> OnNewWeaponEquipped;
     public Action OnTakingDownWeapon;
@@ -21,10 +23,27 @@ public class WeaponSelectionSystem : MonoBehaviour
         EquipInitialWeapon();
     }
 
+    private void Start()
+    {
+        pauseMenu.OnPauseStateChanged += PauseMenu_OnPauseStateChanged;
+    }
+
     private void Update()
     {
-        float scrollWheelInput = Input.GetAxis(MOUSE_SCROLL_WHEEL_INPUT);
+        if (isGamePaused) return;
+
         int previousWeaponSlotIndex = selectedWeaponSlotIndex;
+
+        HandleMouseWheelInput();
+        ConfineSelectedWeaponIndex();
+
+        if (IfNewWeaponSelected(previousWeaponSlotIndex))
+            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+    }
+
+    private void HandleMouseWheelInput()
+    {
+        float scrollWheelInput = Input.GetAxis(MOUSE_SCROLL_WHEEL_INPUT);
 
         if (scrollWheelInput < 0)
         {
@@ -34,14 +53,12 @@ public class WeaponSelectionSystem : MonoBehaviour
         {
             selectedWeaponSlotIndex--;
         }
+    }
 
+    private void ConfineSelectedWeaponIndex()
+    {
         if (selectedWeaponSlotIndex < 0) selectedWeaponSlotIndex = weaponSelectionUIs.Length - 1;
         if (selectedWeaponSlotIndex > weaponSelectionUIs.Length - 1) selectedWeaponSlotIndex = 0;
-
-        if (IfNewWeaponSelected(previousWeaponSlotIndex))
-        {
-            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
-        }
     }
 
     private void EquipInitialWeapon()
@@ -91,5 +108,10 @@ public class WeaponSelectionSystem : MonoBehaviour
         {
             weapon.gameObject.SetActive(false);
         }
+    }
+
+    private void PauseMenu_OnPauseStateChanged(bool isPaused)
+    {
+        isGamePaused = isPaused;
     }
 }
