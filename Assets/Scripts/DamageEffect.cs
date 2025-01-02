@@ -1,20 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class DamageEffect : MonoBehaviour
 {
-    private Color overlayColor;
+    private const float INITIAL_ALPHA = 0f;
+    private const float DAMAGE_ALPHA = 0.7f;
+    private const float FADE_DURATION = 0.5f;
 
     [SerializeField] private Image damageOverlay;
-    [SerializeField] private float fadeDuration = 0.5f;
+
+    private Color overlayColor;
+    private Coroutine fadeCoroutine;
 
     void Start()
     {
         if (damageOverlay != null)
         {
             overlayColor = damageOverlay.color;
-            overlayColor.a = 0;
-            damageOverlay.color = overlayColor;
+            SetOverlayAlpha(INITIAL_ALPHA);
         }
     }
 
@@ -22,28 +26,32 @@ public class DamageEffect : MonoBehaviour
     {
         if (damageOverlay != null)
         {
-            overlayColor.a = 1f;
-            damageOverlay.color = overlayColor;
+            SetOverlayAlpha(DAMAGE_ALPHA);
 
-            StartCoroutine(FadeOutOverlay());
+            if (fadeCoroutine != null)
+                StopCoroutine(fadeCoroutine);
+
+            fadeCoroutine = StartCoroutine(FadeOutOverlay());
         }
     }
 
-    private System.Collections.IEnumerator FadeOutOverlay()
+    private void SetOverlayAlpha(float alpha)
+    {
+        overlayColor.a = alpha;
+        damageOverlay.color = overlayColor;
+    }
+
+    private IEnumerator FadeOutOverlay()
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < fadeDuration)
+        while (elapsedTime < FADE_DURATION)
         {
             elapsedTime += Time.deltaTime;
-
-            overlayColor.a = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-            damageOverlay.color = overlayColor;
-
+            SetOverlayAlpha(Mathf.Lerp(DAMAGE_ALPHA, INITIAL_ALPHA, elapsedTime / FADE_DURATION));
             yield return null;
         }
 
-        overlayColor.a = 0f;
-        damageOverlay.color = overlayColor;
+        SetOverlayAlpha(INITIAL_ALPHA);
     }
 }

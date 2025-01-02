@@ -1054,6 +1054,7 @@ MonoBehaviour:
   damage: 25
   fireRate: 0.09
   shootingPoint: {fileID: 688883385}
+  isAutomated: 1
   audioSource: {fileID: 132120427}
   shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
   muzzleEffectSpawnPoint: {fileID: 1421485120}
@@ -1295,6 +1296,7 @@ MonoBehaviour:
   damage: 30
   fireRate: 0.08
   shootingPoint: {fileID: 987742497}
+  isAutomated: 1
   audioSource: {fileID: 197827241}
   shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
   muzzleEffectSpawnPoint: {fileID: 1299862994}
@@ -2610,6 +2612,96 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0.224, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &391476144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 391476145}
+  - component: {fileID: 391476147}
+  - component: {fileID: 391476146}
+  - component: {fileID: 391476148}
+  m_Layer: 5
+  m_Name: DamageEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &391476145
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391476144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1400069933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &391476146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391476144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &391476147
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391476144}
+  m_CullTransparentMesh: 1
+--- !u!114 &391476148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391476144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f56a46a900d6c6947a2ce348a2bd5cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageOverlay: {fileID: 391476146}
+  fadeDuration: 0.5
 --- !u!1001 &397407088
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7315,6 +7407,7 @@ RectTransform:
   - {fileID: 471395933}
   - {fileID: 2056935886}
   - {fileID: 1875310933}
+  - {fileID: 391476145}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7742,6 +7835,7 @@ MonoBehaviour:
   damage: 50
   fireRate: 0.5
   shootingPoint: {fileID: 2137576461}
+  isAutomated: 0
   audioSource: {fileID: 1422648306}
   shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
   muzzleEffectSpawnPoint: {fileID: 2136757204}
@@ -9465,6 +9559,7 @@ MonoBehaviour:
   damage: 35
   fireRate: 0.1
   shootingPoint: {fileID: 1370444125}
+  isAutomated: 1
   audioSource: {fileID: 1702585399}
   shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
   muzzleEffectSpawnPoint: {fileID: 974839758}
@@ -12383,6 +12478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3affd6d1313230949a9bc4acf50ed4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageEffect: {fileID: 391476148}
   healthSystem: {fileID: 8926991982844677918}
 --- !u!114 &8926991982844677918
 MonoBehaviour:

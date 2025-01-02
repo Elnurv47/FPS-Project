@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
-    //[SerializeField] private DamageEffect damageEffect;
-
+    [SerializeField] private DamageEffect damageEffect;
     [SerializeField] private HealthSystem healthSystem;
 
     private void Start()
@@ -13,7 +12,7 @@ public class Player : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, RaycastHit hitInfo)
     {
-        //damageEffect.ShowDamageEffect();
+        damageEffect.ShowDamageEffect();
         healthSystem.DecreaseHealth(damage);
     }
 

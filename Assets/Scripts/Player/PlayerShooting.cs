@@ -27,18 +27,35 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if (CanShoot())
+        if (currentWeapon.IsAutomated)
+        {
+            HandleAutomatedWeaponShooting();
+        }
+        else
+        {
+            HandleNonAutomatedWeaponShooting();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R)) Reload();
+    }
+
+    private void HandleAutomatedWeaponShooting()
+    {
+        if (Input.GetButton(SHOOTING_INPUT_NAME) && Time.time >= nextTimeToFire && !isReloading)
         {
             nextTimeToFire = Time.time + currentWeapon.FireRate;
             Shoot();
         }
-
-        if (Input.GetButtonUp(SHOOTING_INPUT_NAME)) StopShooting();
-        if (Input.GetKeyDown(KeyCode.R)) Reload();
     }
 
-    private bool CanShoot() => 
-        Input.GetButtonDown(SHOOTING_INPUT_NAME) && Time.time >= nextTimeToFire && !isReloading;
+    private void HandleNonAutomatedWeaponShooting()
+    {
+        if (Input.GetButtonDown(SHOOTING_INPUT_NAME) && Time.time >= nextTimeToFire && !isReloading)
+        {
+            nextTimeToFire = Time.time + currentWeapon.FireRate;
+            Shoot();
+        }
+    }
 
     private void Shoot()
     {
@@ -52,10 +69,10 @@ public class PlayerShooting : MonoBehaviour
         Vector3 rayDirection = fpsCamera.transform.forward;
 
         if (Physics.Raycast(
-            rayOrigin, 
-            rayDirection, 
-            out RaycastHit hitInfo, 
-            currentWeapon.ShootingRange, 
+            rayOrigin,
+            rayDirection,
+            out RaycastHit hitInfo,
+            currentWeapon.ShootingRange,
             ~nonShootableLayerMask))
         {
             if (hitInfo.transform.TryGetComponent(out IDamageable damageable))
@@ -67,15 +84,14 @@ public class PlayerShooting : MonoBehaviour
         OnPlayerIsShooting?.Invoke(true);
     }
 
-
     private void PlayRandomMuzzleAnimation()
     {
         int randomIndex = Random.Range(0, muzzleEffects.Length);
         GameObject randomMuzzleEffect = muzzleEffects[randomIndex];
         Instantiate(
-            randomMuzzleEffect, 
-            currentWeapon.MuzzleEffectSpawnPoint.position, 
-            currentWeapon.MuzzleEffectSpawnPoint.rotation, 
+            randomMuzzleEffect,
+            currentWeapon.MuzzleEffectSpawnPoint.position,
+            currentWeapon.MuzzleEffectSpawnPoint.rotation,
             currentWeapon.MuzzleEffectSpawnPoint);
     }
 
@@ -88,11 +104,6 @@ public class PlayerShooting : MonoBehaviour
         {
             isReloading = false;
         });
-    }
-
-    private void StopShooting()
-    {
-        OnPlayerIsShooting?.Invoke(false);
     }
 
     private void SelectionSystem_OnNewWeaponEquipped(Weapon newlySelectedWeapon)

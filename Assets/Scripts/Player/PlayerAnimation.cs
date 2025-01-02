@@ -7,9 +7,9 @@ public class PlayerAnimation : MonoBehaviour
     private const float RELOADING_ANIMATION_TIME = 3f;
     private const float TAKING_DOWN_WEAPON_ANIMATION_TIME = 1f;
 
-    private const string SHOOTING_ANIMATION_NAME = "isShooting";
     private const string WALKING_ANIMATION_NAME = "isWalking";
     private const string RELOADING_ANIMATION_NAME = "reloadTrigger";
+    private const string SHOOTING_ANIMATION_NAME = "shootingTrigger";
     private const string TAKING_DOWN_WEAPON_ANIMATION_NAME = "takingDownWeapon";
 
     private Animator currentWeaponAnimator;
@@ -36,7 +36,7 @@ public class PlayerAnimation : MonoBehaviour
 
     private void PlayerShooting_OnPlayerIsShooting(bool isShooting)
     {
-        currentWeaponAnimator.SetBool(SHOOTING_ANIMATION_NAME, isShooting);
+        currentWeaponAnimator.SetTrigger(SHOOTING_ANIMATION_NAME);
     }
 
     private void PlayerShooting_OnPlayerIsReloading(Action onFinished)

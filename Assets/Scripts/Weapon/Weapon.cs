@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField, Range(0f, 1f)] private float fireRate = 0.5f;
     [SerializeField] private Transform shootingPoint;
+    [SerializeField] private bool isAutomated;
 
     [Header("Sound Settings")]
     [SerializeField] private AudioSource audioSource;
@@ -24,7 +25,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Animator")]
     [SerializeField] private Animator animator;
-    
+
     public int CurrentAmmoInMagazine { get => currentAmmoInMagazine; }
     public int WeaponMagazineCapacity { get => weaponMagazineCapacity; }
     public int CurrentAmmo { get => currentAmmo; }
@@ -32,6 +33,7 @@ public class Weapon : MonoBehaviour
     public float Damage { get => damage; }
     public float FireRate { get => fireRate; }
     public Vector3 ShootingPoint { get => shootingPoint.position; }
+    public bool IsAutomated { get => isAutomated; }
     public Transform MuzzleEffectSpawnPoint { get => muzzleEffectSpawnPoint; }
     public Animator Animator { get => animator; }
 
