@@ -1,8 +1,14 @@
 using UnityEngine;
 
-public class PauseMenuController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private GameOverMenu gameOverMenu;
+
+    private void Start()
+    {
+        gameOverMenu.SusbscribeToPlayerDeathEvent();
+    }
 
     private void Update()
     {

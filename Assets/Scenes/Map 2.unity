@@ -975,7 +975,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 2010932180}
   isAutomated: 1
   audioSource: {fileID: 924191109}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: cfba95f2080129047842e9e0f51c8f2d, type: 3}
   muzzleEffectSpawnPoint: {fileID: 2072712484}
   animator: {fileID: 924191107}
 --- !u!82 &924191109
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 638423535}
   isAutomated: 1
   audioSource: {fileID: 1018697847}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: dd23b08386e1bdb43bab9301eb76850f, type: 3}
   muzzleEffectSpawnPoint: {fileID: 524444457}
   animator: {fileID: 1018697845}
 --- !u!82 &1018697847
@@ -1958,6 +1958,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1030160344425296344, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
   m_PrefabInstance: {fileID: 1058843155}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1058843157 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+  m_PrefabInstance: {fileID: 1058843155}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d80c230eb6337643bd677ce3efeac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1130511203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,7 +3072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d995ee2a3697444844f49f20f37b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 816242029}
+  gameOverMenu: {fileID: 1058843157}
 --- !u!114 &1930626670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3587,7 +3599,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 1014910119}
   isAutomated: 0
   audioSource: {fileID: 2136767550}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: 30d62c39f7e820f468a5b63f8ac0c902, type: 3}
   muzzleEffectSpawnPoint: {fileID: 1602649380}
   animator: {fileID: 2136767548}
 --- !u!82 &2136767550

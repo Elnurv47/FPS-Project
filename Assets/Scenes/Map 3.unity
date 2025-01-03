@@ -7527,7 +7527,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 386540449}
   isAutomated: 1
   audioSource: {fileID: 474199459}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: dd23b08386e1bdb43bab9301eb76850f, type: 3}
   muzzleEffectSpawnPoint: {fileID: 1672353747}
   animator: {fileID: 474199457}
 --- !u!82 &474199459
@@ -16659,6 +16659,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1030160344425296344, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
   m_PrefabInstance: {fileID: 988277312}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &988277314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+  m_PrefabInstance: {fileID: 988277312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d80c230eb6337643bd677ce3efeac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &989917330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 443522, guid: e2815925c4988c3438817c46d19d1b3f, type: 3}
@@ -22778,7 +22789,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 175991611}
   isAutomated: 1
   audioSource: {fileID: 1287923439}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: cfba95f2080129047842e9e0f51c8f2d, type: 3}
   muzzleEffectSpawnPoint: {fileID: 436137249}
   animator: {fileID: 1287923437}
 --- !u!82 &1287923439
@@ -23423,7 +23434,7 @@ MonoBehaviour:
   shootingPoint: {fileID: 154565430}
   isAutomated: 0
   audioSource: {fileID: 1316434196}
-  shootingSound: {fileID: 8300000, guid: 736a6ee94d8a94aef925851d18125a0c, type: 3}
+  shootingSound: {fileID: 8300000, guid: 30d62c39f7e820f468a5b63f8ac0c902, type: 3}
   muzzleEffectSpawnPoint: {fileID: 444725371}
   animator: {fileID: 1316434194}
 --- !u!82 &1316434196
@@ -35333,8 +35344,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 988277313}
   - {fileID: 1911859157}
+  - {fileID: 988277313}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -35354,7 +35365,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d995ee2a3697444844f49f20f37b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1911859158}
+  gameOverMenu: {fileID: 988277314}
 --- !u!114 &1973471361
 MonoBehaviour:
   m_ObjectHideFlags: 0

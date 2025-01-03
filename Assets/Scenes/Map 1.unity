@@ -2346,6 +2346,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2120266771}
+  gameOverMenu: {fileID: 7363233480254338624}
 --- !u!114 &1856507904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,7 +3177,7 @@ PrefabInstance:
     - target: {fileID: 5124128325017461559, guid: 1dd6bae8907ed7e448abfc818ebc0a88, type: 3}
       propertyPath: pauseMenu
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2120266771}
     - target: {fileID: 5124128325017461559, guid: 1dd6bae8907ed7e448abfc818ebc0a88, type: 3}
       propertyPath: playerWeaponHolder
       value: 
@@ -3590,6 +3591,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+--- !u!114 &7363233480254338624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+  m_PrefabInstance: {fileID: 7363233480254338623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d80c230eb6337643bd677ce3efeac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7417651058267990910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3614,7 +3626,7 @@ MonoBehaviour:
   nonShootableLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 2120266771}
 --- !u!33 &7941685828139076009
 MeshFilter:
   m_ObjectHideFlags: 0
