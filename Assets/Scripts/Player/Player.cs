@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable
 {
     [SerializeField] private DamageEffect damageEffect;
     [SerializeField] private HealthSystem healthSystem;
+
+    public Action OnDied;
 
     private void Start()
     {
@@ -18,6 +21,6 @@ public class Player : MonoBehaviour, IDamageable
 
     private void HealthSystem_OnDied()
     {
-        Debug.Log("GameOver");
+        OnDied?.Invoke();
     }
 }

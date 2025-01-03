@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 738453b967b263f4dabd0770117e1986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 40
+  range: 200
   attackRange: 2
   speed: 0.5
   damage: 5
@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c2d336f34a0d784db58e3fa14d78de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 100
 --- !u!1 &1684917754408444932
 GameObject:
   m_ObjectHideFlags: 0

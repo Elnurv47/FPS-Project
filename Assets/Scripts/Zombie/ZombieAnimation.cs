@@ -1,12 +1,10 @@
 using UnityEngine;
-using System.Collections;
 
 public class ZombieAnimation : MonoBehaviour
 {
     private const string MOVEMENT_ANIMAITON_NAME = "isMoving";
     private const string ATTACKING_ANIMATION_NAME = "isAttacking";
     private const string DYING_ANIMATION_NAME = "isDying";
-    private const int DYING_ANIMATION_PERIOD = 1;
 
     [SerializeField] private Zombie zombie;
     [SerializeField] private Animator animator;

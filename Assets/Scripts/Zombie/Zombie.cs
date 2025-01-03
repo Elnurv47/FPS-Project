@@ -24,6 +24,7 @@ public class Zombie : MonoBehaviour, IDamageable
     public Action<bool> OnMovementStateChanged;
     public Action<bool> OnAttackingStateChanged;
     public Action OnDied;
+    public static Action OnZombieKilled;
 
     private void Awake()
     {
@@ -107,13 +108,16 @@ public class Zombie : MonoBehaviour, IDamageable
     private void Die()
     {
         OnDied?.Invoke();
-        StartCoroutine(WiatForDeathAnimationCoroutine());
+        OnZombieKilled?.Invoke();
+
+        DeactivateComponents();
+        StartCoroutine(WaitForDeathAnimationCoroutine());
     }
 
-    private IEnumerator WiatForDeathAnimationCoroutine()
+    private IEnumerator WaitForDeathAnimationCoroutine()
     {
         yield return new WaitForSeconds(DYING_ANIMATION_PERIOD);
-        DeactivateComponents();
+        DeactivateAnimator();
     }
 
     private void DeactivateComponents()
@@ -122,7 +126,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
         foreach (Component component in components)
         {
-            if (component is Transform || component is Renderer)
+            if (component is Transform || component is Renderer || component is Animator)
                 continue;
 
             if (component is MonoBehaviour)
@@ -131,4 +135,14 @@ public class Zombie : MonoBehaviour, IDamageable
                 Destroy(component);
         }
     }
+
+    private void DeactivateAnimator()
+    {
+        Animator animator = GetComponent<Animator>();
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
+    }
+
 }
