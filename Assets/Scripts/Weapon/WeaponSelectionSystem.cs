@@ -5,6 +5,7 @@ public class WeaponSelectionSystem : MonoBehaviour
 {
     private const string MOUSE_SCROLL_WHEEL_INPUT = "Mouse ScrollWheel";
 
+    private int previousWeaponSlotIndex = 0;
     private int selectedWeaponSlotIndex = 0;
     private bool isGamePaused;
     private Weapon currentWeapon;
@@ -32,13 +33,38 @@ public class WeaponSelectionSystem : MonoBehaviour
     {
         if (isGamePaused) return;
 
-        int previousWeaponSlotIndex = selectedWeaponSlotIndex;
+        previousWeaponSlotIndex = selectedWeaponSlotIndex;
 
+        HandleKeyboardInput();
         HandleMouseWheelInput();
         ConfineSelectedWeaponIndex();
 
         if (IfNewWeaponSelected(previousWeaponSlotIndex))
             EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+    }
+
+    private void HandleKeyboardInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedWeaponSlotIndex = 0;
+            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedWeaponSlotIndex = 1;
+            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            selectedWeaponSlotIndex = 2;
+            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            selectedWeaponSlotIndex = 3;
+            EquipWeapon(selectedWeaponSlotIndex, previousWeaponSlotIndex);
+        }
     }
 
     private void HandleMouseWheelInput()

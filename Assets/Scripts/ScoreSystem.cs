@@ -17,6 +17,6 @@ public class ScoreSystem : MonoBehaviour
     private void Zombie_OnZombieKilled()
     {
         score++;
-        scoreText.text = score.ToString();
+        scoreText.text = "Your Score: " + score.ToString();
     }
 }
