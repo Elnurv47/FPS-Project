@@ -15,7 +15,7 @@ public class Zombie : MonoBehaviour, IDamageable
 
     [SerializeField] private float range = 20f;
     [SerializeField] private float attackRange = 2f;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float speed = 20f;
     [SerializeField] private float damage = 5f;
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private HealthSystem healthSystem;
