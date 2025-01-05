@@ -2801,6 +2801,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5638830882752531083, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7561454752615518773, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: mainMenuScene
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 8061107851722421052, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2879,6 +2887,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8061107851722421052, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337209633834593226, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337209633834593226, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337209633834593226, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8337209633834593226, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450116658091210948, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450116658091210948, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450116658091210948, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450116658091210948, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3422,13 +3462,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8589926308943517632}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.10938428, z: -0, w: 0.9939996}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8603075887617398248}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -12.56, z: 0}
 --- !u!1001 &6873074184540622660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3497,6 +3537,10 @@ PrefabInstance:
     - target: {fileID: 520602542583290633, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
       propertyPath: m_Name
       value: GameOverMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 520602542583290633, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1030160344425296344, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
       propertyPath: m_Pivot.x
@@ -3586,6 +3630,14 @@ PrefabInstance:
       propertyPath: scoreSystem
       value: 
       objectReference: {fileID: 1432798594010000853}
+    - target: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+      propertyPath: mainMenuScene
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+      propertyPath: currentMapScene
+      value: Map 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6231079438953074952, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
       propertyPath: m_text
       value: Main Menu

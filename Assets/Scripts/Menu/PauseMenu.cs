@@ -1,11 +1,10 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] private SceneAsset mainMenuScene;
+    [SerializeField] private string mainMenuScene;
 
     public Action<bool> OnPauseStateChanged;
 
@@ -20,7 +19,7 @@ public class PauseMenu : MonoBehaviour
     public void OnMainMenuButtonClick()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(mainMenuScene.name);
+        SceneManager.LoadSceneAsync(mainMenuScene);
     }
 
     public void Pause()

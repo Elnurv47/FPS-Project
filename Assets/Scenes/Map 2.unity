@@ -637,6 +637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7561454752615518773, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
+      propertyPath: mainMenuScene
+      value: Main Menu
+      objectReference: {fileID: 0}
     - target: {fileID: 8061107851722421052, guid: 4110e8775531edf4db8f459cdf71ca0c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1945,9 +1949,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1839487133}
     - target: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
+      propertyPath: mainMenuScene
+      value: Main Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 3948922987078298798, guid: 3e60d522cc5c1114a8f38712b7572b30, type: 3}
       propertyPath: currentMapScene
-      value: 
-      objectReference: {fileID: 102900000, guid: cf8cb11dc28b38745bad8b65c035efec, type: 3}
+      value: Map 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

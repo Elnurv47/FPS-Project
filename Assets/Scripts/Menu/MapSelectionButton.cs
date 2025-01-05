@@ -1,13 +1,12 @@
 using UnityEngine;
-using UnityEditor;
 using UnityEngine.SceneManagement;
 
 public class MapSelectionButton : MonoBehaviour
 {
-    [SerializeField] private SceneAsset scene;
+    [SerializeField] private string sceneName;
 
     public void OnClick()
     {
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadSceneAsync(sceneName);
     }
 }
