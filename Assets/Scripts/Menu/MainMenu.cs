@@ -17,4 +17,9 @@ public class MainMenu : MonoBehaviour
         mapSelectionMenu.gameObject.SetActive(false);
         playButton.gameObject.SetActive(true);
     }
+
+    public void OnQuitButtonClick()
+    {
+        Application.Quit();
+    }
 }
