@@ -21,7 +21,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        selectionSystem.OnNewWeaponEquipped += SelectionSystem_OnNewWeaponEquipped;
+        selectionSystem.OnNewWeaponEquipped += WeaponSelectionSystem_OnNewWeaponEquipped;
         pauseMenu.OnPauseStateChanged += PauseMenu_OnPauseStateChanged;
     }
 
@@ -106,7 +106,7 @@ public class PlayerShooting : MonoBehaviour
         });
     }
 
-    private void SelectionSystem_OnNewWeaponEquipped(Weapon newlySelectedWeapon)
+    private void WeaponSelectionSystem_OnNewWeaponEquipped(Weapon newlySelectedWeapon)
     {
         currentWeapon = newlySelectedWeapon;
     }

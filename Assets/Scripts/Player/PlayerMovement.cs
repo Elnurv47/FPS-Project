@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isGrounded;
 
+    [Header("Settings")]
     [SerializeField] private float speed = 5f;
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float gravity = -15f;
+    [Header("Ground Check Properties")]
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundDistance = 0.4f;
     [SerializeField] private LayerMask groundMask;

@@ -12,7 +12,6 @@ public class AmmoInfoPanel : MonoBehaviour
     }
 
     [SerializeField] private TextMeshProUGUI ammoInfoText;
-
     [SerializeField] private WeaponSelectionSystem weaponSelectionSystem;
 
     private void Start()

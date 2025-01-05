@@ -5,7 +5,6 @@ using System.Collections;
 public class PlayerAnimation : MonoBehaviour
 {
     private const float RELOADING_ANIMATION_TIME = 3f;
-    private const float TAKING_DOWN_WEAPON_ANIMATION_TIME = 1f;
 
     private const string WALKING_ANIMATION_NAME = "isWalking";
     private const string RELOADING_ANIMATION_NAME = "reloadTrigger";

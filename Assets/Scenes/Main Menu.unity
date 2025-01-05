@@ -1537,6 +1537,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 488502692}
     m_Modifications:
+    - target: {fileID: 7443828217776256, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443828217776256, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2311805086833896553}
+    - target: {fileID: 7443828217776256, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClick
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443828217776256, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MapSelectionButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7443828217776256, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6729270708550321254, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1626,6 +1646,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+--- !u!114 &2311805086833896553 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1494469052529483460, guid: f0ef0cc977610074d84be4b034793e82, type: 3}
+  m_PrefabInstance: {fileID: 2311805086833896552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec288584518054e4180656abb113f1b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
